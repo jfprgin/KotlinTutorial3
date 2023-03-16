@@ -1,5 +1,5 @@
 fun main(args: Array<String>) {
-    val car1 = Car()        //Create object
+    /*val car1 = Car("Tesla", "S Plaid", "Red", 4)        //Create object
     car1.name = "Tesla"
     car1.model = "S Plaid"
     car1.color = "Red"
@@ -13,11 +13,7 @@ fun main(args: Array<String>) {
     car1.move()
     car1.stop()
 
-    val car2 = Car()
-    car2.name = "BMW"
-    car2.model = "M5"
-    car2.color = "Black"
-    car2.doors = 2
+    val car2 = Car("BMW", "M5", "Black", 2)        //Create object
 
     println("\n")
     println("Car name: ${car2.name}")
@@ -26,20 +22,38 @@ fun main(args: Array<String>) {
     println("Car doors: ${car2.doors}")
 
     car2.move()
-    car2.stop()
+    car2.stop()*/
+
+    val user = User("Alex", "Dobinca", 23)
+    val friend = User("John", "Doe", 25)
+    val coworker = User("Adam")
+
+    println("User name: ${user.name}")
+    println("User name: ${friend.name}")
+
+    println("User name: ${coworker.name}")
+    println("User last name: ${coworker.lastName}")
+    println("User age: ${coworker.age}")
 }
 
-class Car {
-    var name = ""
-    var model = ""
-    var color = ""
-    var doors = 0
+class User(name: String, var lastName: String, var age: Int) {                 //Constructor with parameters (name, lastName, age)
+    var name:String
 
-    fun move() {
-        println("The $name is moving")
+    init {                                                                    //init is a block of code that is executed when the object is created
+        if (name.lowercase().startsWith("a")) {
+            this.name = name
+        }
+        else {
+            this.name = "User"
+            println("The name doesn't start with the letter 'a ' or 'A'")
+        }
     }
 
-    fun stop() {
-        println("The $name is stopped")
+    constructor(name: String) : this(name, "LastName", 0) {          //Secondary constructor, calls the primary constructor with the parameters (name, lastName, age) and sets the default values for lastName and age
+        println("2nd constructor")
     }
+    constructor(name: String, lastName: String) : this(name, lastName, 0) {
+        println("3rd constructor")
+    }
+
 }
